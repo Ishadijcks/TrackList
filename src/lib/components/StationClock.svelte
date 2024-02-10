@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
+    import OctoCat from '$lib/components/OctoCat.svelte';
 
     const dispatch = createEventDispatcher();
     let now = new Date();
@@ -30,6 +31,8 @@
     });
 </script>
 
-<div class="flex flex-row items-center justify-center">
+<div class="flex flex-row items-center justify-around">
+    <span class="w-6"></span>
     <span class="text-white font-nssans font-bold text-2xl">{hours}:{minutes}</span>
+    <OctoCat />
 </div>
