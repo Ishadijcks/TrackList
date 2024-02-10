@@ -62,7 +62,7 @@ export class SpotifyClient {
 
     public getToken = async (code: string): Promise<string> => {
         // stored in the previous step
-        let codeVerifier = localStorage.getItem('code_verifier') as string;
+        const codeVerifier = localStorage.getItem('code_verifier') as string;
 
         const payload = {
             method: 'POST',
@@ -106,6 +106,8 @@ export class SpotifyClient {
                 Authorization: 'Bearer ' + accessToken,
             },
         });
+
+        console.log(response)
 
         return await response.json();
     }

@@ -92,7 +92,12 @@
     </div>
 {:else}
     <div class="flex flex-row justify-center items-center w-full h-full">
-        <LoadingSpinner />
+        <div class="flex flex-col items-center space-y-4">
+            <LoadingSpinner />
+            <span class="text-4xl font-nssans font-bold text-blue-900">
+                Zorg dat je spotify aanstaat en probeer het opnieuw...
+            </span>
+        </div>
     </div>
 {/if}
 
