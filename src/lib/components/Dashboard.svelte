@@ -103,11 +103,11 @@
 
             {#if takesTooLong}
                 <span class="text-4xl font-nssans font-bold text-blue-900 text-center">
-                    💢Wisselstoring⚠️<br />Zorg dat Spotify aan het spelen is en probeer het opnieuw...
+                    💢 Wisselstoring ⚠️<br />Zorg dat Spotify aan het spelen is en probeer het opnieuw...
                 </span>
             {:else}
                 <span class="text-4xl font-nssans font-bold text-blue-900">
-                    🚂️Tjoeke tjoeke tjoek, zo doet de trein jouw wachtrij ophalen...🛤
+                    🚂️ Tjoeke tjoeke tjoek, zo doet de trein jouw wachtrij ophalen... 🛤
                 </span>
             {/if}
         </div>
