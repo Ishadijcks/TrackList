@@ -53,9 +53,9 @@
 <table>
     <thead>
         <tr class="bg-blue-100">
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="ml-2">Start</span></th>
+            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="ml-2">Vertrek</span></th>
             <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Track</span></th>
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Index</span></th>
+            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Spoor</span></th>
             <th class="bg-blue-900 w-48">
                 <StationClock on:tick={clockTick} />
             </th>
