@@ -2,7 +2,7 @@
     import { client } from '$lib/SpotifyClient';
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
-    import { base } from "$app/paths";
+    import { base } from '$app/paths';
 
     onMount(async () => {
         const urlParams = new URLSearchParams(window.location.search);

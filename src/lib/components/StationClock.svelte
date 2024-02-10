@@ -1,6 +1,8 @@
 <script lang="ts">
     import { onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
 
+    const dispatch = createEventDispatcher();
     let time = new Date();
 
     // these automatically update when `time`
@@ -8,10 +10,12 @@
     $: hours = time.getHours().toString().padStart(2, '0');
     $: minutes = time.getMinutes().toString().padStart(2, '0');
 
+    const intervalMs = 1000;
     onMount(() => {
         const interval = setInterval(() => {
             time = new Date();
-        }, 1000);
+            dispatch('tick', { duration: intervalMs });
+        }, intervalMs);
 
         return () => {
             clearInterval(interval);
