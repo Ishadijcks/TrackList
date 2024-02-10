@@ -16,6 +16,12 @@
     let currentProgress: number = 0;
     $: progressPercentage = (currentProgress / currentLength) * 100;
 
+    let takesTooLong = false;
+
+    setTimeout(() => {
+        takesTooLong = true;
+    }, 5000);
+
     async function getData() {
         const queueData = await $client.getQueueData();
         const currentPlayer = await $client.getCurrentPlayer();
@@ -94,9 +100,16 @@
     <div class="flex flex-row justify-center items-center w-full h-full">
         <div class="flex flex-col items-center space-y-4">
             <LoadingSpinner />
-            <span class="text-4xl font-nssans font-bold text-blue-900">
-                Zorg dat je spotify aanstaat en probeer het opnieuw...
-            </span>
+
+            {#if takesTooLong}
+                <span class="text-4xl font-nssans font-bold text-blue-900 text-center">
+                    💢Wisselstoring⚠️<br />Zorg dat Spotify aan het spelen is en probeer het opnieuw...
+                </span>
+            {:else}
+                <span class="text-4xl font-nssans font-bold text-blue-900">
+                    🚂️Tjoeke tjoeke tjoek, zo doet de trein jouw wachtrij ophalen...🛤
+                </span>
+            {/if}
         </div>
     </div>
 {/if}
