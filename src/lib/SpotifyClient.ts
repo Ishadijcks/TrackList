@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { PUBLIC_CALLBACK_URL } from '$env/static/public';
 
 export class SpotifyClient {
     clientId: string;
@@ -94,17 +95,15 @@ export class SpotifyClient {
             },
         });
 
-        const data = await response.json();
+        return await response.json();
 
-        console.log(data);
-        return data;
     }
 }
 
 export const client = writable(
     new SpotifyClient(
         '4ba0f7fd84a544ba9d640e7cc39ea622',
-        'http://localhost:5173/callback',
+        PUBLIC_CALLBACK_URL,
         'user-read-currently-playing user-read-playback-state',
     ),
 );

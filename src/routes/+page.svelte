@@ -10,9 +10,12 @@
     onMount(async () => {
         const queueData = await $client.getQueueData();
 
-        tracks = [queueData.currently_playing, ...queueData.queue];
-        tracks = tracks.splice(0, 8);
+        if (queueData.queue) {
+            tracks = [queueData.currently_playing, ...queueData.queue];
+            tracks = tracks.splice(0, 8);
+        }
 
+        console.log(queueData);
         console.log('Retrieved tracks');
     });
 
@@ -31,26 +34,26 @@
 
 <table>
     <thead>
-        <tr class="bg-blue-100">
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="ml-2">Start</span></th>
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Track</span></th>
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Index</span></th>
-            <th class="bg-blue-900 w-48">
-                <StationClock />
-            </th>
-        </tr>
+    <tr class="bg-blue-100">
+        <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="ml-2">Start</span></th>
+        <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Track</span></th>
+        <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Index</span></th>
+        <th class="bg-blue-900 w-48">
+            <StationClock />
+        </th>
+    </tr>
     </thead>
     <tbody>
-        {#each tracks as track, index}
-            <TrackBanner
-                time={timeThatSongStarts(index)}
-                title={formatName(track.name)}
-                subtitle={formatArtists(track.artists)}
-                platform={track.track_number}
-                album={formatName(track.album.name)}
-                iconUrl={track.album.images[0].url}
-                isEven={index % 2 === 0}
-            ></TrackBanner>
-        {/each}
+    {#each tracks as track, index}
+        <TrackBanner
+            time={timeThatSongStarts(index)}
+            title={formatName(track.name)}
+            subtitle={formatArtists(track.artists)}
+            platform={track.track_number}
+            album={formatName(track.album.name)}
+            iconUrl={track.album.images[0].url}
+            isEven={index % 2 === 0}
+        ></TrackBanner>
+    {/each}
     </tbody>
 </table>

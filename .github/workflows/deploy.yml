@@ -23,6 +23,7 @@ jobs:
             - name: build
               env:
                   BASE_PATH: '/${{ github.event.repository.name }}'
+                  PUBLIC_CALLBACK_URL: 'https://ishadijcks.github.io/TrackList/callback'
               run: |
                   npm run build
 
