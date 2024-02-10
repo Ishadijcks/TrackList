@@ -3,7 +3,7 @@
     import { client } from '$lib/SpotifyClient';
     import type { SpotifyTrack } from '$lib/models/SpotifyTrack';
     import { onMount } from 'svelte';
-    import { formatArtists, formatName, msToMMSS } from '$lib/util/spotify';
+    import { formatArtists, formatName } from '$lib/util/spotify';
     import StationClock from '$lib/components/StationClock.svelte';
 
     let tracks: SpotifyTrack[] = [];
@@ -12,7 +12,6 @@
 
         if (queueData.queue) {
             tracks = [queueData.currently_playing, ...queueData.queue];
-            tracks = tracks.splice(0, 8);
         }
 
         console.log(queueData);
