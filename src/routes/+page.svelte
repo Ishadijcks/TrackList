@@ -1,50 +1,56 @@
 <script lang="ts">
     import TrackBanner from '$lib/components/TrackBanner.svelte';
+    import { client } from '$lib/SpotifyClient';
+    import type { SpotifyTrack } from '$lib/models/SpotifyTrack';
+    import { onMount } from 'svelte';
+    import { formatArtists, formatName, msToMMSS } from '$lib/util/spotify';
+    import StationClock from '$lib/components/StationClock.svelte';
+
+    let tracks: SpotifyTrack[] = [];
+    onMount(async () => {
+        const queueData = await $client.getQueueData();
+
+        tracks = [queueData.currently_playing, ...queueData.queue];
+        tracks = tracks.splice(0, 8);
+
+        console.log('Retrieved tracks');
+    });
+
+    const timeThatSongStarts = (index: number): string => {
+        let now = Date.now();
+
+        for (let i = 0; i < index; i++) {
+            now += tracks[i].duration_ms;
+        }
+        const newDate = new Date(now);
+        const HH = newDate.getHours().toString().padStart(2, '0');
+        const MM = newDate.getMinutes().toString().padStart(2, '0');
+        return `${HH}:${MM}`;
+    };
 </script>
 
 <table>
     <thead>
-        <tr class="h-8 bg-blue-100">
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="ml-2">Depart</span></th>
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">To/Remark</span></th>
-            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Platform</span></th>
-            <th></th>
+        <tr class="bg-blue-100">
+            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="ml-2">Start</span></th>
+            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Track</span></th>
+            <th class="italic font-nssans font-bold text-blue-900 text-left"><span class="">Index</span></th>
+            <th class="bg-blue-900 w-48">
+                <StationClock />
+            </th>
         </tr>
     </thead>
     <tbody>
-        <TrackBanner
-            time="10:04"
-            title="Groningen"
-            subtitle="Via Zwolle, Assen"
-            platform="2"
-            type="Intercity"
-            isEven={false}
-        ></TrackBanner>
-        <TrackBanner
-            time="10:09"
-            title="Ede-Wageningen"
-            subtitle="Via Hoevelaken, Barneveld Noord, Barneveld C"
-            platform="4b"
-            type="Intercity"
-            isEven={true}
-        ></TrackBanner>
-        <TrackBanner time="10:10" title="Apeldoorn" subtitle="" platform="2" type="Intercity" isEven={false}
-        ></TrackBanner>
-        <TrackBanner
-            time="10:10"
-            title="Den Haag Centraal"
-            subtitle="Via Utrecht C, Gouda"
-            platform="4a"
-            type="Intercity"
-            isEven={true}
-        ></TrackBanner>
-        <TrackBanner
-            time="10:11"
-            title="Schiphol Airport"
-            subtitle="Via Hilversum, Duivendrecht, Amsterdam Zuid"
-            platform="5a"
-            type="Intercity"
-            isEven={false}
-        ></TrackBanner>
+        {#each tracks as track, index}
+            <TrackBanner
+                time={timeThatSongStarts(index)}
+                title={formatName(track.name)}
+                subtitle={formatArtists(track.artists)}
+                platform={track.track_number}
+                album={formatName(track.album.name)}
+                iconUrl={track.album.images[0].url}
+                isEven={index % 2 === 0}
+            ></TrackBanner>
+        {/each}
     </tbody>
 </table>

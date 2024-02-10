@@ -4,9 +4,9 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                nssans: ['NS Sans']
-            }
-        }
+                nssans: ['NS Sans'],
+            },
+        },
     },
-    plugins: []
+    plugins: [],
 };
