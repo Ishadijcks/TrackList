@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'NS Sans';
+        src: local('NS Sans'), local('NS-Sans'), local('ns sans'), local('ns-sans'), url('/fonts/nssans/nssans.woff2');
+        font-weight: normal;
+        font-display: swap;
+    }
+    @font-face {
+        font-family: 'NS Sans';
+        src: local('NS Sans'), local('NS-Sans'), local('ns sans'), local('ns-sans'),
+            url('/fonts/nssans/nssans-bold.woff2');
+        font-weight: bold;
+        font-display: swap;
+    }
+}
