@@ -9,12 +9,21 @@ Tracklist doet het heel goed op feestjes.
 
 [^1]: https://nos.nl/artikel/2506228-kamermeerderheid-wil-onderzoek-naar-gepersonaliseerde-kentekens
 
-## Developing
+## Ontwikkelen
 
-Once you've cloned the project and installed dependencies with `npm install`, start a development server:
+Tjap de dependencies met `npm install`, en run die zooi lokaal:
 
 ```bash
 npm run dev
 ```
 
-Makkie
+Een kind kan de wasm doen
+
+## Dankbetuigingen
+Dan wil ik nog een paar mensen bedanken, want je doet het nooit _echt_ alleen:
+
+- Wouter Koolmees voor het inspireren van het ontwerp.
+- Spotify voor het eerste bedrijf zijn dat zowaar een degelijke API weet neer te zetten.
+- Deze [shady website](https://en.likefont.com/font/12729376/) voor het lettertype.
+
+Zonder jullie was dit project niet gelukt.
